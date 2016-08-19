@@ -8,15 +8,27 @@ namespace Browser
 {
     static class Program
     {
+        static void usage()
+        {
+            Console.WriteLine("Proper Usage is: Browser.exe url");
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BrowserForm());
+            if (args.Length == 1)
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new BrowserForm(args[0]));
+            }
+            else {
+                usage();
+            }
         }
+
     }
 }
