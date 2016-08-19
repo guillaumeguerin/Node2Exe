@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Node2Exe
@@ -37,7 +39,7 @@ namespace Node2Exe
         {
             int port = 8080; //<--- Default port
 
-            while (checkPort(port)) {
+            while (!checkPort(port)) {
                 port++;
             }
 
@@ -47,6 +49,22 @@ namespace Node2Exe
         static void Main(string[] args)
         {
             int port = getUnusedPort();
+
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startInfo.FileName = "CMD.exe";
+            startInfo.Arguments = "/C start node static_server.js " + port;
+            process.StartInfo = startInfo;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            process.Start();
+            process.WaitForExit();
+
+            string strCmdText = "/C start Browser.exe " + @"http://localhost:" + port;
+            Process.Start("CMD.exe", strCmdText);
+
+            Thread.Sleep(5000);
         }
     }
 }
