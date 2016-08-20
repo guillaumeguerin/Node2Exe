@@ -60,11 +60,6 @@ namespace Node2Exe
             process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             process.Start();
             process.WaitForExit();
-
-            string strCmdText = "/C start Browser.exe " + @"http://localhost:" + port;
-            Process.Start("CMD.exe", strCmdText);
-
-            Thread.Sleep(5000);
         }
     }
 }
