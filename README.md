@@ -10,3 +10,8 @@ The Node.js Portable Executable is not included in the source. It can be downloa
 You need to put it in the same folder as Launcher.exe in order to make it work.
 
 The browser windows uses Awesomium.NET, for more informations check : http://www.awesomium.com/
+
+## Screenshots
+Basic Node js app :
+
+![alt text](https://raw.githubusercontent.com/guillaumeguerin/Node2Exe/master/images/Screenshot1.png "Basic Node.js app")
